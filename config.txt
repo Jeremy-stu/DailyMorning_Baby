@@ -6,7 +6,7 @@
 # 公众号appSecret
 "app_secret": "1c5b597fe33a17d9d1d48e266a77a65c",
 # 模板消息id
-"template_id": "1k6cJ6UWPQfW1X9ihfvCDxkCFT_mARhaSNAFCeEQa2Q",
+"template_id": "Ie5Bff1d7LhnKnnqbmadOOFVIIOkLqkbAcBYfjO8nRU",
 # 接收公众号消息的微信号，如果有多个，需要在[]里用英文逗号间隔，例如["wx1", "wx2"]
 "user": ["oH2y45vHCUK7lgA5xQR0HlkrrTvE", "oH2y45rLZdWF9HGCEjBlo4v7cK5g"],
 
@@ -20,5 +20,5 @@
 # 生日2
 "birthday2": {"name": "阿豪", "birthday": "r2000-08-20"},
 # 在一起的日子，格式同上
-"love_date": "202-05-12"
+"love_date": "2020-05-12"
 }

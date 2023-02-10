@@ -10,7 +10,7 @@ USER_ID: 接收人的 OpenID 多个用换行分隔<br>
 BIRTHDAY: 倒数日（原生日），换行分隔，见更新说明。格式如 05-20，1999-11-04 这种<br>
 START_DATE: 正数日期，格式：2008-08-08<br>
 CITY: 城市，不要加市，准确到地级市。比如：北京、天津、广州、承德。  
-~~具体可以移步 https://github.com/rxrw/daily_morning 寻找几个关键参数~~  该项目已经被官方封了  <br>
+
 
 VX模板如下  
 {{date.DATA}}   
@@ -29,7 +29,7 @@ VX模板如下
 {{note_ch.DATA}}  
       
 效果如图
-![7DD39B07860A54664A542CE7202B8E9D](https://user-images.githubusercontent.com/64049788/187068544-f7a97567-d1f3-42d5-a762-7357c5c3d113.png)
+![image](https://github.com/Jeremy-stu/DailyMorning_Baby/blob/main/Screenshot_2023-02-10-14-38-35-447-edit_com.tencent.mm.jpg)
 
 按下图，创建模板，设置变量，把微信公众平台上的各种字符串按说明创建到 GitHub -> Settings -> Secrets -> Actions 中。
 ![71bf9d11a876d23ef0f0728645a8ba0](https://user-images.githubusercontent.com/9566402/183242301-fd6ab30e-bfe5-4245-b2a9-f690184db307.png)

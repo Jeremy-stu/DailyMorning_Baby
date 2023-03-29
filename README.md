@@ -29,7 +29,7 @@ VX模板如下
 {{note_ch.DATA}}  
       
 效果如图
-![image](https://github.com/Jeremy-stu/DailyMorning_Baby/blob/main/1676855480365.jpg)
+![image](https://ghproxy.net/https://raw.githubusercontent.com/Jeremy-stu/DailyMorning_Baby/main/1676855480365.jpg)
 
 按下图，创建模板，设置变量，把微信公众平台上的各种字符串按说明创建到 GitHub -> Settings -> Secrets -> Actions 中。
 ![71bf9d11a876d23ef0f0728645a8ba0](https://user-images.githubusercontent.com/9566402/183242301-fd6ab30e-bfe5-4245-b2a9-f690184db307.png)

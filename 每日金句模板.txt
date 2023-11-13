@@ -11,7 +11,7 @@
 今天也要乖乖的多喝水🍵哦(^▽^)
 
 🥇每日金句
-✨{{note_en.DATA}}
-✨{{note_ch.DATA}}
+✨{{note_en.DATA}}{{note_en2.DATA}}
+✨{{note_ch.DATA}}{{note_ch2.DATA}}
 
 今天也要记得想我🥰

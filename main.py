@@ -118,11 +118,11 @@ def get_ciba():
     else:
         note_en2 = "超了"
 
-    if len(note_ch) > 30:
-        note_ch2 = note_ch[30:]
-        note_ch = note_ch[:30]
+    if len(note_ch) > 20:
+        note_ch2 = note_ch[20:]
+        note_ch = note_ch[:20]
     else:
-        note_ch2 = "hh"
+        note_ch2 = ""
 
     return note_ch, note_ch2, note_en, note_en2
 

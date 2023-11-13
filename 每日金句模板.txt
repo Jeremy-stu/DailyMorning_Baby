@@ -5,12 +5,13 @@
 最高气温: {{max_temperature.DATA}}℃
 
 💕我们已经在一起了{{love_day.DATA}}天💕
-💌{{birthday1.DATA}}
-💌{{birthday2.DATA}}
+🎂{{birthday1.DATA}}
+🎂{{birthday2.DATA}}
 
 今天也要乖乖的多喝水🍵哦(^▽^)
 
 🥇每日金句
 ✨{{note_en.DATA}}
 ✨{{note_ch.DATA}}
+
 今天也要记得想我🥰

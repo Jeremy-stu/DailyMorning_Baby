@@ -112,7 +112,7 @@ def get_ciba():
     note_en = data["content"]
     note_ch = data["note"]
 
-    if len(note_en) > 20:
+    if len(note_en) > 50:
         note_en2 = note_en[50:]
         note_en = note_en[:50]
     else:

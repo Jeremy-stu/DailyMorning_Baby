@@ -113,8 +113,8 @@ def get_ciba():
     note_ch = data["note"]
 
     if len(note_en) > 20:
-        note_en2 = note_en[20:]
-        note_en = note_en[:20]
+        note_en2 = note_en[40:]
+        note_en = note_en[:40]
     else:
         note_en2 = "超了"
 

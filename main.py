@@ -122,7 +122,7 @@ def get_ciba():
         note_ch2 = note_ch[30:]
         note_ch = note_ch[:30]
     else:
-        note_ch2 = ""
+        note_ch2 = "hh"
 
     return note_ch, note_ch2, note_en, note_en2
 

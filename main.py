@@ -112,9 +112,11 @@ def get_ciba():
     note_en = data["content"]
     note_ch = data["note"]
 
-    if len(note_en) > 40:
-        note_en2 = note_en[40:]
-        note_en = note_en[:40]
+    if len(note_en) > 1:
+        #note_en2 = note_en[40:]
+        #note_en = note_en[:40]
+        note_en = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+        note_en2 = "完"
     else:
         note_en2 = ""
 

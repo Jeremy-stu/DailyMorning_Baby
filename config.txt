@@ -8,9 +8,9 @@
 # 模板消息id
 "template_id": "Al74gyCVJb4r-ZLBckc4m7X-2pCyW5AVkSnhodWlo3g",
 # 接收公众号消息的微信号，如果有多个，需要在[]里用英文逗号间隔，例如["wx1", "wx2"]
-#"user": ["oH2y45rLZdWF9HGCEjBlo4v7cK5g","oH2y45vHCUK7lgA5xQR0HlkrrTvE"],
+"user": ["oH2y45rLZdWF9HGCEjBlo4v7cK5g","oH2y45vHCUK7lgA5xQR0HlkrrTvE"],
 #测试用，只给自己账号发送，用时取消注释
-"user": ["oH2y45rLZdWF9HGCEjBlo4v7cK5g"],
+#"user": ["oH2y45rLZdWF9HGCEjBlo4v7cK5g"],
 # 信息配置
 # 所在省份
 "province": "河南",

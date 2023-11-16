@@ -13,9 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set Timezone
+      run: |
+        sudo timedatectl set-timezone Asia/Shanghai
+      '''- name: Set Timezone
         uses: szenius/set-timezone@v1.2
         with:
-          timezoneLinux: "Asia/Shanghai"
+          timezoneLinux: "Asia/Shanghai"'''
       - name: Set up Python V3
         uses: actions/setup-python@v4
         with:

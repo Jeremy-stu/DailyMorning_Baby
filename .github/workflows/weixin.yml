@@ -11,16 +11,16 @@ jobs:
     #runs-on: ubuntu-latest
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
       - name: Set Timezone
         uses: szenius/set-timezone@v1.2
         with:
           timezoneLinux: "Asia/Shanghai"
       - name: Set up Python V3
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
             python-version: 3.11.x
-            #python-version: 3.11.6
+            #python-version: '3.11.x' #键值是字符串类型有无引号都是合法的
       - name: install pip packages
         run: |
           python3 -m pip install --upgrade pip

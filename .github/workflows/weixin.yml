@@ -1,12 +1,13 @@
 name: weixin
+env:
+# 把时区设置为了北京时间，可以规避因为时区问题造成的日期不准确现象
+  TZ: 'Asia/Shanghai'
 on:
   workflow_dispatch:
   schedule: 
     # 代表国际标准时间23点01分，北京时间需要+8小时，代表北京时间上午7点01分运行
-    - cron: '45 15 * * *'
-env:
-# 把时区设置为了北京时间，可以规避因为时区问题造成的日期不准确现象
-  TZ: 'Asia/Shanghai'
+    - cron: '35 16 * * *'
+
 jobs:
 #将工作流程中运行的所有作业组合在一起
   build:

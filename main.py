@@ -8,14 +8,14 @@ from datetime import datetime, date
 from zhdate import ZhDate
 import sys
 import os
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
 
+# 在程序开始时生成随机颜色列表
+COLOR_LIST = ["#" + "%06x" % random.randint(0, 0xFFFFFF) for _ in range(100)]
 
 def get_color():
-    # 获取随机颜色
-    get_colors = lambda n: list(map(lambda i: "#" + "%06x" % random.randint(0, 0xFFFFFF), range(n)))
-    color_list = get_colors(100)
-    return random.choice(color_list)
-
+    # 从预生成的颜色列表中随机选择一个颜色
+    return random.choice(COLOR_LIST)
 
 def get_access_token():
     # appId
@@ -44,11 +44,11 @@ def get_weather(province, city):
         sys.exit(1)
     # city_id = 101280101
     # 毫秒级时间戳
-    t = (int(round(time() * 1000)))
+    t = int(time() * 1000)
     headers = {
-        "Referer": "http://www.weather.com.cn/weather1d/{}.shtml".format(city_id),
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
-    }
+        "Referer": f"http://www.weather.com.cn/weather1d/{city_id}.shtml",
+        "User-Agent": USER_AGENT
+    }#统一使用 f-string 可使代码更简洁、易读且高效，是 Python 3.6+ 项目的推荐实践
     url = "http://d1.weather.com.cn/dingzhi/{}.html?_={}".format(city_id, t)
     response = get(url, headers=headers)
     response.encoding = "utf-8"
@@ -65,6 +65,7 @@ def get_weather(province, city):
     return weather, temp, tempn
 
 
+'''
 def get_birthday(birthday, year, today):
     birthday_year = birthday.split("-")[0]
     # 判断是否为农历生日
@@ -97,13 +98,47 @@ def get_birthday(birthday, year, today):
         birth_date = year_date
         birth_day = str(birth_date.__sub__(today)).split(" ")[0]
     return birth_day
+'''
+
+def get_birthday(birthday: str, year: int, today: date) -> int:
+    parts = birthday.split('-')
+    is_lunar = parts[0].startswith('r')
+    
+    if is_lunar:
+        #农历处理
+        r_month = int(parts[1])
+        r_day = int(parts[2])
+        current_year_date = ZhDate(year, r_month, r_day).to_datetime().date()
+    else:
+        # 公历处理
+        month_day = parts[-2:]  # 取最后两个部分作为月和日
+        month, day = map(int, month_day)
+        current_year_date = date(year, month, day)
+    
+    if today > current_year_date:
+        # 计算下一年的生日
+        if is_lunar:
+            next_year_date = ZhDate(year + 1, r_month, r_day).to_datetime().date()
+        else:
+            # 处理公历闰年2月29日情况
+            try:
+                next_year_date = date(year + 1, month, day)
+            except ValueError:
+                next_year_date = date(year + 1, month, day - 1)  # 简化为前一天，可根据需求调整
+        birth_date = next_year_date
+    elif today == current_year_date:
+        return 0
+    else:
+        birth_date = current_year_date
+    
+    return (birth_date - today).days
 
 
 def get_ciba():
     url = "https://open.iciba.com/dsapi/"
     headers = {
-        'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
+        "Content-Type": "application/json",
+        "User-Agent": USER_AGENT
     }
     response = requests.get(url, headers=headers)
     data = response.json()
@@ -127,22 +162,19 @@ def get_ciba():
     return note_ch, note_ch2, note_en, note_en2
 
 
-def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature, note_ch, note_ch2,
-                 note_en, note_en2):
-    url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={}".format(access_token)
-    week_list = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+def send_message(to_user, access_token, city_name, weather, max_temperature, min_temperature, note_ch, note_ch2, note_en, note_en2):
+    url = f"https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={access_token}"
+    weekdays_cn = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
     year = localtime().tm_year
-    month = localtime().tm_mon
-    day = localtime().tm_mday
-    today = datetime.date(datetime(year=year, month=month, day=day))
-    week = week_list[today.isoweekday() % 7]
+    today = date.today()
+    week = weekdays_cn[today.weekday()]
     # 获取在一起的日子的日期格式
-    love_year = int(config["love_date"].split("-")[0])
-    love_month = int(config["love_date"].split("-")[1])
-    love_day = int(config["love_date"].split("-")[2])
-    love_date = date(love_year, love_month, love_day)
-    # 获取在一起的日期差
-    love_days = str(today.__sub__(love_date)).split(" ")[0]
+    try:
+        love_date = datetime.strptime(config["love_date"], "%Y-%m-%d").date()
+    except ValueError:
+        # 处理非法日期格式
+        raise ValueError("Invalid date format, expected YYYY-MM-DD")
+    love_days = (today - love_date).days
     # 获取所有生日数据
     birthdays = {}
     for k, v in config.items():
@@ -207,8 +239,8 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
         # 将生日数据插入data
         data["data"][key] = {"value": birthday_data, "color": get_color()}
     headers = {
-        'Content-Type': 'application/json',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
+        "Content-Type": "application/json",
+        "User-Agent": USER_AGENT
     }
     response = post(url, headers=headers, json=data).json()
     if response["errcode"] == 40037:
@@ -248,4 +280,3 @@ if __name__ == "__main__":
     # 公众号推送消息
     for user in users:
         send_message(user, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_ch2, note_en, note_en2)
-    os.system("pause")

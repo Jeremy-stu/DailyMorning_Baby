@@ -9,22 +9,19 @@ jobs:
 #将工作流程中运行的所有作业组合在一起
   build:
   #定义名为 build 的作业。 子键将定义作业的属性 
-    #runs-on: ubuntu-latest
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    #runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+      #这个操作会将你的仓库检出到 $GITHUB_WORKSPACE 目录下，以便你的工作流程能够访问它。
       - name: Set Timezone
         run: |
           sudo timedatectl set-timezone Asia/Shanghai
-      #- name: Set Timezone
-        #uses: szenius/set-timezone@v1.2
-        #with:
-          #timezoneLinux: "Asia/Shanghai"
       - name: Set up Python V3
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.12.x
-           #python-version: '3.11.x' #键值是字符串类型有无引号都是合法的
+          python-version: '3.12'
+          #python-version: '3.11.x' #键值是字符串类型有无引号都是合法的
       - name: install pip packages
         run: |
           python3 -m pip install --upgrade pip

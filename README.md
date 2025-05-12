@@ -41,15 +41,16 @@
 
 ### **配置说明**
 **Fork 之后修改 `config` 文件的参数**：
-- `APP_ID`：公众平台 `appID`
-- `APP_SECRET`：公众平台 `appSecret`
-- `TEMPLATE_ID`：模板 ID
-- `USER_ID`：接收人的 OpenID（多个 OpenID 请换行分隔）
-- `BIRTHDAY`：生日倒计时，格式：
+- `app_id`：公众平台 `appID`
+- `app_secret`：公众平台 `appSecret`
+- `template_id`：模板 ID
+- `user_id`：接收人的 OpenID（多个 OpenID 请换行分隔）
+- `birthday`：生日倒计时，格式：
   - **公历**：`MM-DD`（如 `05-20`）、`YYYY-MM-DD`（如 `1999-11-04`）
   - **农历**：`r-月-日`（如 `r-11-22`）
-- `START_DATE`：正数日期（如 `2008-08-08`）
+- `love_date`：在一起的日期（如 `2008-08-08`）
 - `CITY`：城市（不要加“市”，如 `北京`、`广州`、`承德`）
+- `province`: 省份（不加“省”）
 
 ---
 

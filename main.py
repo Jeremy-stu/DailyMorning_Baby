@@ -105,12 +105,12 @@ def get_birthday(birthday: str, year: int, today: date) -> int:
     is_lunar = parts[0].startswith('r')
     
     if is_lunar:
-        #农历处理
-        r_month = int(parts[1])
-        r_day = int(parts[2])
+        #农历处理,兼容 "rYYYY-MM-DD" 和 "r-MM-DD" 格式
+        r_month = int(parts[-2])
+        r_day = int(parts[-1])
         current_year_date = ZhDate(year, r_month, r_day).to_datetime().date()
     else:
-        # 公历处理
+        # 公历处理,兼容 "YYYY-MM-DD" 和 "MM-DD" 格式
         month_day = parts[-2:]  # 取最后两个部分作为月和日
         month, day = map(int, month_day)
         current_year_date = date(year, month, day)
@@ -271,12 +271,12 @@ if __name__ == "__main__":
     # 获取accessToken
     accessToken = get_access_token()
     # 接收的用户
-    users = config["user"]
+    users = config["user_id"]
     # 传入省份和市获取天气信息
     province, city = config["province"], config["city"]
     weather, max_temperature, min_temperature = get_weather(province, city)
     # 获取词霸每日金句
     note_ch, note_ch2, note_en, note_en2 = get_ciba()
     # 公众号推送消息
-    for user in users:
-        send_message(user, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_ch2, note_en, note_en2)
+    for user_id in users:
+        send_message(user_id, accessToken, city, weather, max_temperature, min_temperature, note_ch, note_ch2, note_en, note_en2)

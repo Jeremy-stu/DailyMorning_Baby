@@ -14,10 +14,7 @@
 
 ---
 
-### **Star History**
-[![Star History](https://api.star-history.com/svg?repos=JionghaoSong/DailyMorning_Star&type=Date)](https://www.star-history.com/#JionghaoSong/DailyMorning_Star&Date)
 
----
 
 ## **微信推送模板**
 请复制以下模板，并替换变量值：  

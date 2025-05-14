@@ -183,7 +183,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
     data = {
         "touser": to_user,
         "template_id": config["template_id"],
-        "url": "http://weixin.qq.com/download",
+        "url": "https://www.bootstrapmb.com/item/15780/preview",
         "topcolor": "#FF0000",
         "data": {
             "date": {
